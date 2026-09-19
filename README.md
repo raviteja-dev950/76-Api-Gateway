@@ -359,25 +359,20 @@ After: application.yml has 0 routes (only port 8084 + management) – GatewayCon
 
 ### 1. Via Gateway – Browser – localhost:8084/api/orders – Same JSON as Direct – Main Proof – Gateway Works!
 
-[demo1](screenshots/demo1.png)
-
-**Work Process:** Before fix – 404 because StripPrefix removed /api – After fix – Remove StripPrefix – Now forwards /api/orders -> /api/orders – 200 OK – Same JSON as direct 8086 – Proves Gateway routing works – 76 COMPLETED!
+![demo1](screenshots/demo1.png)
 
 ---
 
 ### 2. Routes – Browser – localhost:8084/actuator/gateway/routes – 3 Routes Only – Not 6 Duplicate
 
-[demo2](screenshots/demo2.png)
-
-**Work Process:** Before – 6 routes (3 Java + 3 YML duplicate – order-service + order-service-yml) – After – Removed YML routes – application.yml only 11 lines no routes – Now 3 routes only – order-service 8086, product-service 8082, auth-service 8081 – Fixed duplicate – Also fixed actuator Whitelabel 404 -> Exposing 16 endpoints via include=*
+![demo2](screenshots/demo2.png)
 
 ---
 
 ### 3. Direct – Browser – localhost:8086/api/orders – Direct Order – Clean JSON – Compare with Via Gateway Same
 
-[demo3](screenshots/demo3.png)
+![demo3](screenshots/demo3.png)
 
-**Work Process:** Direct test – http://localhost:8086/api/orders – Shows [{"id":2,Laptop 50000}] – Compare with demo1 via gateway same JSON – Proves Gateway forwards correctly to 8086 – Fix 1 Port 8086 already in use fixed via kill Java – Now Tomcat started on port 8086
 
 ---
 
